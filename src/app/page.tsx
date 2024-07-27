@@ -2,9 +2,15 @@
 
 import { useEffect, useState } from "react";
 import ProductCard from "./components/products/ProductCard";
+import { useDispatch, useSelector } from "react-redux";
+import { set_all_product } from "@/provider/redux/product/product";
 
 export default function Home() {
-  const [allProducts, setAllProducts] = useState([]);
+  const reduxProductData = useSelector((state) => state.allProductReducer);
+  const dispatch = useDispatch();
+  const [allProducts, setAllProducts] = useState(
+    Array.isArray(reduxProductData) ? reduxProductData : []
+  );
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(true);
 
@@ -20,6 +26,8 @@ export default function Home() {
       }
       let products = await response.json();
       setAllProducts(products);
+      dispatch(set_all_product(products));
+
       setError("");
     } catch (err) {
       setError(err?.message);
@@ -30,7 +38,7 @@ export default function Home() {
   };
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-24">
       <div className="">
         {loading && <div className="text-xl font-medium">Loading...</div>}
         {error && <div className="text-red-700">{error}</div>}

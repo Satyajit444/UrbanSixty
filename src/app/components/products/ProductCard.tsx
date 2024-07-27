@@ -3,7 +3,7 @@ import React from "react";
 const ProductCard = ({ products }) => {
   return (
     <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6 ">
-      {products.map(({ id, image, title, description,price}) => (
+      {products?.map(({ id, image, title, description,price}) => (
         <div key={id} className="p-4 m-2 border rounded shadow-lg cursor-pointer hover:bg-gray-100">
           <img src={image} alt={title} className="w-full h-52" />
           <h2 className="text-2xl font-semibold mt-2 line-clamp-3">Rs. {price}</h2>
