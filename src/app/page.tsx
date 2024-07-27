@@ -7,7 +7,6 @@ import { AppDispatch, RootState } from "@/provider/redux/store";
 import { set_all_product } from "@/provider/redux/product/product";
 import { Product } from "@/types/types";
 import Loader from "@/ui/Loader";
-import SkeletonLoader from "@/ui/Skeleton";
 
 export default function Home() {
   const reduxProductData = useSelector(
@@ -46,8 +45,7 @@ export default function Home() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-24">
-      <SkeletonLoader type="text" width="w-64" height="h-66" />
-      <div className="">
+      <div>
         {loading && (
           <Loader
             color="text-orange-500"

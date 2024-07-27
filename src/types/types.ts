@@ -5,8 +5,9 @@ export interface Product {
   id: number;
   name: string;
   price: number;
-  // Add other product fields if needed
 }
+
+// global components interface
 
 export interface LoaderProps {
   color?: string;
@@ -18,7 +19,7 @@ export interface ButtonProps {
   bgColor: string;
   textColor: string;
   label: string;
-  type?: "button" | "submit" | "reset"; // Default to 'button' if not provided
+  type?: "button" | "submit" | "reset";
   onClick?: () => void;
 }
 
@@ -27,4 +28,13 @@ export interface SkeletonLoaderProps {
   width?: string;
   height?: string;
   borderRadius?: string;
+}
+
+export interface PaginationProps {
+  totalCount: number;
+  pageSize: number;
+  loading?: boolean;
+  getCurrentPage?: (currentPage: number) => void;
+  refresh?: () => void;
+  reset?: number;
 }

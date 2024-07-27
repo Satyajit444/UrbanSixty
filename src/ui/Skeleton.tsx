@@ -1,4 +1,3 @@
-// SkeletonLoader.tsx
 import React from "react";
 
 import { SkeletonLoaderProps } from "@/types/types";
@@ -9,7 +8,6 @@ const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
   height = "h-4",
   borderRadius = "rounded",
 }) => {
-  // Determine the base class
   const baseClasses = "bg-gray-200 animate-pulse";
 
   // Determine type-specific classes for text || rectangle || circle
