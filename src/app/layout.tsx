@@ -1,8 +1,9 @@
 import "./globals.css";
 import { Nunito_Sans } from "next/font/google";
-import Header from "@/components/shared/Header";
-import Footer from "@/components/shared/Footer";
+import Header from "@/components/layouts/Header";
+import Footer from "@/components/layouts/Footer";
 import ReduxProvider from "@/provider/redux/ReduxProvider";
+require('dotenv').config();
 
 const nutino_sans = Nunito_Sans({ subsets: ["latin"] });
 

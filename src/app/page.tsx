@@ -3,16 +3,20 @@
 import { useEffect, useState } from "react";
 import ProductCard from "./components/products/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "@/provider/redux/store"; 
 import { set_all_product } from "@/provider/redux/product/product";
+import { Product } from "@/types/types";
 
 export default function Home() {
-  const reduxProductData = useSelector((state) => state.allProductReducer);
-  const dispatch = useDispatch();
-  const [allProducts, setAllProducts] = useState(
+  const reduxProductData = useSelector(
+    (state: RootState) => state.allProductReducer
+  );
+  const dispatch: AppDispatch = useDispatch();
+  const [allProducts, setAllProducts] = useState<Product[]>(
     Array.isArray(reduxProductData) ? reduxProductData : []
   );
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     getAllProduct();
@@ -20,17 +24,18 @@ export default function Home() {
 
   const getAllProduct = async () => {
     try {
-      const response = await fetch(`https://fakestoreapi.com/products?limit=6`);
+      const response = await fetch(`${process?.env?.PRODUCTS_API}?limit=6`);
       if (!response.ok) {
         throw new Error(`HTTP error: Status ${response.status}`);
       }
-      let products = await response.json();
+      const products: Product[] = await response.json();
       setAllProducts(products);
       dispatch(set_all_product(products));
-
       setError("");
     } catch (err) {
-      setError(err?.message);
+      setError(
+        (err as Error)?.message || "An error occurred while fetching products."
+      );
       setAllProducts([]);
     } finally {
       setLoading(false);
