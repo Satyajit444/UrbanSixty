@@ -1,10 +1,15 @@
 // Global interfaces and types
 
 // product interface
+// @/types/types.ts
 export interface Product {
   id: number;
   name: string;
   price: number;
+  title: string;
+  description: string;
+  category: string;
+  image: string;
 }
 
 // global components interface

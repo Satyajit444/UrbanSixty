@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ProductCard from "./components/products/ProductCard";
+import ProductCard from "../components/products/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/provider/redux/store";
 import { set_all_product } from "@/provider/redux/product/product";
@@ -10,7 +10,7 @@ import Loader from "@/ui/Loader";
 
 export default function Home() {
   const reduxProductData = useSelector(
-    (state: RootState) => state.allProductReducer
+    (state: RootState) => state.all_products
   );
   const dispatch: AppDispatch = useDispatch();
   const [allProducts, setAllProducts] = useState<Product[]>(
@@ -42,9 +42,10 @@ export default function Home() {
       setLoading(false);
     }
   };
-
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-24">
+    
+
       <div>
         {loading && (
           <Loader

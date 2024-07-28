@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 import allProductReducer from "./product/product";
-import allUserReducer from "./product/user";
+import allUserReducer from "./user/user";
+import visibilityReducer from "./others/toggleVisibility";
 
-export const store = configureStore({
+const store = configureStore({
   reducer: {
-    allProductReducer,
-    allUserReducer,
+    all_products: allProductReducer,
+    all_users: allUserReducer,
+    visibility: visibilityReducer,
   },
 });
 
