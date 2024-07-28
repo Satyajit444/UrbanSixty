@@ -29,3 +29,8 @@ export interface LoaderProps {
     reset?: number;
   }
   
+  export interface ModalProps {
+    isOpen: boolean;
+    closeModal: () => void;
+    children: React.ReactNode;
+  }

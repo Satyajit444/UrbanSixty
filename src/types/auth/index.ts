@@ -25,3 +25,15 @@ export interface User {
   address: Address;
   phone: string;
 }
+
+export interface SignInCredentials {
+  email: string;
+  password: string;
+}
+
+export interface SignUpCredentials {
+  username: string;
+  email: string;
+  password: string;
+}
+
