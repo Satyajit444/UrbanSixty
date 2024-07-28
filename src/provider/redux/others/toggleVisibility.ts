@@ -1,25 +1,23 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface VisibilityState {
-  isOpen: boolean;
+  [key: string]: boolean;
 }
 
-const initialState: VisibilityState = {
-  isOpen: false,
-};
+const initialState: VisibilityState = {};
 
 const visibilitySlice = createSlice({
   name: "visibility",
   initialState,
   reducers: {
-    show(state) {
-      state.isOpen = true;
+    show(state, action: PayloadAction<string>) {
+      state[action.payload] = true;
     },
-    hide(state) {
-      state.isOpen = false;
+    hide(state, action: PayloadAction<string>) {
+      state[action.payload] = false;
     },
-    toggle(state) {
-      state.isOpen = !state.isOpen;
+    toggle(state, action: PayloadAction<string>) {
+      state[action.payload] = !state[action.payload];
     },
   },
 });
