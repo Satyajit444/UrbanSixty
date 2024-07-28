@@ -5,7 +5,7 @@ import ProductCard from "../components/products/ProductCard";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "@/provider/redux/store";
 import { set_all_product } from "@/provider/redux/product/product";
-import { Product } from "@/types/types";
+import { Product } from "@/types";
 import Loader from "@/ui/Loader";
 
 export default function Home() {

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { SkeletonLoaderProps } from "@/types/types";
+import { SkeletonLoaderProps } from "@/types";
 
 const SkeletonLoader: React.FC<SkeletonLoaderProps> = ({
   type,

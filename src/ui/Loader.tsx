@@ -1,6 +1,6 @@
 // components/Loader.tsx
 import React, { Fragment } from "react";
-import { LoaderProps } from "@/types/types";
+import { LoaderProps } from "@/types";
 
 const Loader: React.FC<LoaderProps> = ({
   color = "#333", // Default color

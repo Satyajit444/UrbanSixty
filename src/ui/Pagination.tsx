@@ -3,7 +3,7 @@ import Arrow from "@/components/icons/Arrow";
 import DoubleArrow from "@/components/icons/DoubleArrow";
 import Reload from "@/components/icons/Reload";
 import { useMemo, useState } from "react";
-import { PaginationProps } from "@/types/types";
+import { PaginationProps } from "@/types";
 
 const Pagination = ({
   totalCount,
