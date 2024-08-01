@@ -1,12 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaCartPlus, FaHeart } from "react-icons/fa";
 import { Product } from "@/types/types";
+import SignIn from "../auth/SignIn";
 
 interface ProductCardProps {
   products: Product[];
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({ products }) => {
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
   return (
     <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
       {products?.map(({ id, image, title, description, price }) => (
@@ -21,19 +26,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ products }) => {
           <div className="flex justify-between mt-4">
             <button
               className="flex items-center px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-700"
-              onClick={() => alert(`Added ${title} to cart!`)}
+              onClick={handleShow}
             >
               <FaCartPlus className="mr-2" /> Add to Cart
             </button>
             <button
               className="flex items-center px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
-              onClick={() => alert(`Added ${title} to wishlist!`)}
+              onClick={handleShow}
+
             >
               <FaHeart className="mr-2" /> Wishlist
             </button>
           </div>
         </div>
       ))}
+
+      <SignIn isOpen={show} closeModal={handleClose} />
     </div>
   );
 };
