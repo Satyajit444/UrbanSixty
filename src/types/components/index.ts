@@ -34,3 +34,17 @@ export interface LoaderProps {
     closeModal: () => void;
     children: React.ReactNode;
   }
+
+  export interface Toast {
+    name: string;
+    bodyColor: string;
+    image: string;
+    messageColor: string;
+    crossColor: string;
+  }
+  
+  export interface ToastPopUpProps {
+    message?: string;
+    type?: string;
+    onClick?: () => void;
+  }
