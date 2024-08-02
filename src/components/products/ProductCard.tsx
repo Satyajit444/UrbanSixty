@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FaCartPlus, FaHeart } from "react-icons/fa";
-import { Product } from "@/types/types";
+import { Product } from "@/types";
 import SignIn from "../auth/SignIn";
 
 interface ProductCardProps {

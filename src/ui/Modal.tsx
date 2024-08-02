@@ -1,5 +1,4 @@
 import React from "react";
-
 import { ModalProps } from "@/types";
 
 const Modal: React.FC<ModalProps> = ({ isOpen, closeModal, children }) => {

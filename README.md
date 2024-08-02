@@ -71,4 +71,5 @@ Make sure you have the following installed on your machine:
 
 <!-- Command for updating the ssh for secondary repositories -->
 
-ssh-add ~/.ssh/ghost/id_ed25519_ghost ssh -T git@github-second
+ssh-add ~/.ssh/ghost/id_ed25519_ghost 
+ssh -T git@github-second
