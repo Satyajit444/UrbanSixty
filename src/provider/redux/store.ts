@@ -2,12 +2,15 @@ import { configureStore } from "@reduxjs/toolkit";
 import allProductReducer from "./product/product";
 import allUserReducer from "./user/user";
 import visibilityReducer from "./others/toggleVisibility";
+import  toastSlice  from "./others/ToastSlice";
 
 const store = configureStore({
   reducer: {
     all_products: allProductReducer,
     all_users: allUserReducer,
     visibility: visibilityReducer,
+    toast: toastSlice,
+
   },
 });
 

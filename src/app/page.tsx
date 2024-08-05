@@ -25,7 +25,7 @@ export default function Home() {
 
   const getAllProduct = async () => {
     try {
-      const response = await fetch(`${process?.env?.PRODUCTS_API}?limit=6`);
+      const response = await fetch(`${process?.env?.PRODUCTS_API}?limit=1`);
       if (!response.ok) {
         throw new Error(`HTTP error: Status ${response.status}`);
       }

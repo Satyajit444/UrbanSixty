@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaCartPlus, FaHeart } from "react-icons/fa";
 import { Product } from "@/types";
 import SignIn from "../auth/SignIn";
+import Register from "../auth/Register";
 
 interface ProductCardProps {
   products: Product[];
@@ -9,6 +10,9 @@ interface ProductCardProps {
 
 const ProductCard: React.FC<ProductCardProps> = ({ products }) => {
   const [show, setShow] = useState(false);
+  const [SignUp, setSignUp] = useState(false);
+  const openSignUp = () => setSignUp(true);
+  const closeSignUp = () => setSignUp(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -19,7 +23,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ products }) => {
           key={id}
           className="p-4 m-2 border rounded shadow-lg cursor-pointer hover:bg-gray-100"
         >
-          <img src={image} alt={title} className="w-full h-52 object-cover" />
+          <img src={image} alt={title} className="w-full h-52 object-contain" />
           <h2 className="text-2xl font-semibold mt-2">Rs. {price}</h2>
           <h2 className="text-2xl font-semibold mt-2">{title}</h2>
           <p className="text-lg mt-1 line-clamp-5">{description}</p>
@@ -33,7 +37,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ products }) => {
             <button
               className="flex items-center px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700"
               onClick={handleShow}
-
             >
               <FaHeart className="mr-2" /> Wishlist
             </button>
@@ -41,7 +44,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ products }) => {
         </div>
       ))}
 
-      <SignIn isOpen={show} closeModal={handleClose} />
+      <SignIn isOpen={show} closeModal={handleClose} openSignUp={openSignUp} />
+      <Register isOpen={SignUp} closeModal={closeSignUp} />
     </div>
   );
 };

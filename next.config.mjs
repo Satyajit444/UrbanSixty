@@ -1,19 +1,22 @@
 /** @type {import('next').NextConfig} */
+const url = 'https://fakestoreapi.com';
 const nextConfig = {
   env: {
     // Product Endpoints
-    PRODUCTS_API: "https://fakestoreapi.com/products",
-    PRODUCT_BY_ID_API: "https://fakestoreapi.com/products/",
-    PRODUCT_CATEGORIES_API: "https://fakestoreapi.com/products/categories",
-    PRODUCTS_BY_CATEGORY_API: "https://fakestoreapi.com/products/category/",
+    PRODUCTS_API: `${url}/products`,
+    PRODUCT_BY_ID_API: `${url}/products/`,
+    PRODUCT_CATEGORIES_API: `${url}/products/categories`,
+    PRODUCTS_BY_CATEGORY_API: `${url}/products/category/`,
 
     // Cart Endpoints
-    CARTS_API: "https://fakestoreapi.com/carts",
-    CART_BY_ID_API: "https://fakestoreapi.com/carts/",
+    CARTS_API: `${url}/carts`,
+    CART_BY_ID_API: `${url}/carts/`,
 
     // User Endpoints
-    USERS_API: "https://fakestoreapi.com/users",
-    USER_BY_ID_API: "https://fakestoreapi.com/users/",
+    USERS_API: `${url}/users`,
+    USER_BY_ID_API: `${url}/users/`,
+
+    USER_SIGN_UP_API: `${url}/auth/login`,
   },
 };
 

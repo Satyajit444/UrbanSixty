@@ -3,7 +3,8 @@ import { Nunito_Sans } from "next/font/google";
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/layouts/Footer";
 import ReduxProvider from "@/provider/redux/ReduxProvider";
-require('dotenv').config();
+import ToastPopUp from "@/ui/Toast";
+require("dotenv").config();
 
 const nutino_sans = Nunito_Sans({ subsets: ["latin"] });
 
@@ -27,6 +28,7 @@ export default function RootLayout({
         <body>
           <Header />
           <main>{children}</main>
+          <ToastPopUp />
           <Footer />
         </body>
       </html>
