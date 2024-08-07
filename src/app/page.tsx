@@ -7,6 +7,7 @@ import { AppDispatch, RootState } from "@/provider/redux/store";
 import { set_all_product } from "@/provider/redux/product/product";
 import { Product } from "@/types";
 import Loader from "@/ui/Loader";
+import { getAllProduct } from "@/api/products/product";
 
 export default function Home() {
   const reduxProductData = useSelector(
@@ -20,19 +21,22 @@ export default function Home() {
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    getAllProduct();
+    getProducts();
   }, []);
 
-  const getAllProduct = async () => {
+  const getProducts = async () => {
     try {
-      const response = await fetch(`${process?.env?.PRODUCTS_API}?limit=1`);
-      if (!response.ok) {
-        throw new Error(`HTTP error: Status ${response.status}`);
+      const response = await getAllProduct();
+      if (response.success && response.data) {
+        setAllProducts(response.data);
+        dispatch(set_all_product(response.data));
+        setError("");
+      } else {
+        setError(
+          response.message || "An error occurred while fetching products."
+        );
+        setAllProducts([]);
       }
-      const products: Product[] = await response.json();
-      setAllProducts(products);
-      dispatch(set_all_product(products));
-      setError("");
     } catch (err) {
       setError(
         (err as Error)?.message || "An error occurred while fetching products."
@@ -44,8 +48,6 @@ export default function Home() {
   };
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-24">
-    
-
       <div>
         {loading && (
           <Loader
@@ -55,7 +57,13 @@ export default function Home() {
           />
         )}
         {error && <div className="text-red-700">{error}</div>}
-        {allProducts && <ProductCard products={allProducts} />}
+        {allProducts && (
+          <div className="grid xl:grid-cols-4 lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-6">
+            {allProducts.map((product, key) => (
+              <ProductCard key={key} product={product} />
+            ))}
+          </div>
+        )}
       </div>
     </main>
   );

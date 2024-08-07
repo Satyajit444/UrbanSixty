@@ -7,11 +7,11 @@ export const userRegister = async (
   try {
     const response = await axios.post(process.env.USERS_API as string, data);
     return { id: response.data.id, success: true };
-  } catch (error: any) {
+  } catch (error) {
     console.error("User register error--------", error);
     return {
       success: false,
-      message: error.message,
+      message: (error as Error)?.message,
     };
   }
 };
@@ -25,8 +25,8 @@ export const userSignin = async (
       data
     );
     return { token: response.data.token, success: true };
-  } catch (error: any) {
+  } catch (error) {
     console.error("User register error--------", error);
-    return { success: false, message: error?.message };
+    return { success: false, message: (error as Error)?.message };
   }
 };
