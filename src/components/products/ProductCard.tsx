@@ -30,9 +30,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             <h2 className="text-2xl text-gray-500 font-semibold mt-2">
               Rs. {product?.price}
             </h2>
-            <h2 className="text-2xl text-gray-500 font-semibold mt-2">
+            <Link href={`categories/${product?.category}`} className="text-2xl text-gray-500 font-semibold mt-2">
               {product?.category}
-            </h2>
+            </Link>
           </div>
           <h2 className="text-xl font-semibold mt-2 truncate">
             {product?.title}

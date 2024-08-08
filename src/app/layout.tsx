@@ -27,7 +27,7 @@ export default function RootLayout({
       >
         <body>
           <Header />
-          <main className="py-8 px-14">{children}</main>
+          <main className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-24">{children}</main>
           <ToastPopUp />
           <Footer />
         </body>
