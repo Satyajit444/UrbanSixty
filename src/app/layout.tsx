@@ -27,7 +27,7 @@ export default function RootLayout({
       >
         <body>
           <Header />
-          <main>{children}</main>
+          <main className="py-8 px-14">{children}</main>
           <ToastPopUp />
           <Footer />
         </body>
