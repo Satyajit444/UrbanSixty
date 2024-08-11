@@ -3,9 +3,6 @@ import { Nunito_Sans } from "next/font/google";
 import Header from "@/components/layouts/Header";
 import Footer from "@/components/layouts/Footer";
 import ReduxProvider from "@/provider/redux/ReduxProvider";
-import ToastPopUp from "@/ui/Toast";
-require("dotenv").config();
-
 const nutino_sans = Nunito_Sans({ subsets: ["latin"] });
 
 export const metadata = {
@@ -28,7 +25,6 @@ export default function RootLayout({
         <body>
           <Header />
           <main className="flex min-h-screen flex-col items-center justify-between p-4 lg:p-24">{children}</main>
-          <ToastPopUp />
           <Footer />
         </body>
       </html>
