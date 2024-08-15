@@ -4,6 +4,7 @@ import { Product } from "@/types";
 import SignIn from "../auth/SignIn";
 import Register from "../auth/Register";
 import Link from "next/link";
+import { authenticate } from "@/api/auth/user";
 
 interface ProductCardProps {
   product: Product;
@@ -16,7 +17,14 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const closeSignUp = () => setSignUp(false);
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    const auth = authenticate();
+    console.log(auth);
+    
+    if (!auth) {
+      setShow(true);
+    }
+  };
   return (
     <>
       <div className="p-4 m-2 border rounded shadow-lg cursor-pointer hover:bg-gray-100">
@@ -26,18 +34,22 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             alt={product?.title}
             className="w-full h-52 object-contain"
           />
-          <div className="flex justify-between w-full">
-            <h2 className="text-2xl text-gray-500 font-semibold mt-2">
-              Rs. {product?.price}
-            </h2>
-            <Link href={`categories/${product?.category}`} className="text-2xl text-gray-500 font-semibold mt-2">
-              {product?.category}
-            </Link>
-          </div>
-          <h2 className="text-xl font-semibold mt-2 truncate">
-            {product?.title}
-          </h2>
         </Link>
+
+        <div className="flex justify-between w-full">
+          <h2 className="text-2xl text-gray-500 font-semibold mt-2">
+            Rs. {product?.price}
+          </h2>
+          <Link
+            href={`categories/${product?.category}`}
+            className="text-2xl text-gray-500 font-semibold mt-2"
+          >
+            {product?.category}
+          </Link>
+        </div>
+        <h2 className="text-xl font-semibold mt-2 truncate">
+          {product?.title}
+        </h2>
         {/* <p className="text-lg mt-1 line-clamp-5">{product?.description}</p> */}
         <div className="flex justify-between mt-4">
           <button

@@ -37,3 +37,6 @@ export interface SignUpCredentials {
   password: string;
 }
 
+export interface DecodedToken {
+  user: string;
+}

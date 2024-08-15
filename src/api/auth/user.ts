@@ -1,5 +1,11 @@
 import axios from "axios";
-import { SignInCredentials, SignUpCredentials } from "@/types";
+import {
+  DecodedToken,
+  SignInCredentials,
+  SignUpCredentials,
+  User,
+} from "@/types";
+import { jwtDecode } from "jwt-decode";
 
 export const userRegister = async (
   data: SignUpCredentials
@@ -28,5 +34,31 @@ export const userSignin = async (
   } catch (error) {
     console.error("User register error--------", error);
     return { success: false, message: (error as Error)?.message };
+  }
+};
+
+export const getUserProfile = async (
+  id: number
+): Promise<{ data?: User; success: boolean; message?: string }> => {
+  try {
+    const response = await axios.get(
+      `${process.env.USER_BY_ID_API as string}${id}`
+    );
+    return { data: response.data, success: true };
+  } catch (error) {
+    console.error("User register error--------", error);
+    return { success: false, message: (error as Error)?.message };
+  }
+};
+
+export const authenticate = async (): Promise<boolean> => {
+  const authToken = localStorage.getItem("authToken");
+  const username = localStorage.getItem("username");
+
+  if (authToken && username) {
+    const decoded = jwtDecode<DecodedToken>(authToken);
+    return username === decoded?.user;
+  } else {
+    return false;
   }
 };

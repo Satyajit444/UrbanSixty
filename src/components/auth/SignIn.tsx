@@ -50,6 +50,8 @@ const SignIn: React.FC<SignInProps> = ({ isOpen, closeModal, openSignUp }) => {
       const result = await userSignin(credentials);
       if (result.success) {
         localStorage.setItem("authToken", result?.token as string);
+        localStorage.setItem("username", credentials?.username as string);
+
         closeModal();
       } else {
         setError(result.message || "Sign-in failed. Please try again.");
